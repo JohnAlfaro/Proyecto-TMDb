@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from "react";
 import {
-  fetchMovies,
   fetchGenre,
   fetchMovieByGenre,
   fetchPersons,
   fetchTopratedMovie,
 } from "../../service";
-import RBCarousel from "react-bootstrap-carousel";
+
 import "react-bootstrap-carousel/dist/react-bootstrap-carousel.css";
 import { Link } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 
 export function Home() {
-  const [nowPlaying, setNowPlaying] = useState([]);
   const [genres, setGenres] = useState([]);
   const [movieByGenre, setMovieByGenre] = useState([]);
   const [persons, setPersons] = useState([]);
@@ -20,7 +18,6 @@ export function Home() {
 
   useEffect(() => {
     const fetchAPI = async () => {
-      setNowPlaying(await fetchMovies());
       setGenres(await fetchGenre());
       setMovieByGenre(await fetchMovieByGenre(28));
       setPersons(await fetchPersons());
@@ -33,27 +30,7 @@ export function Home() {
   const handleGenreClick = async (genre_id) => {
     setMovieByGenre(await fetchMovieByGenre(genre_id));
   };
-  const movies = nowPlaying.slice(0, 5).map((item, index) => {
-    return (
-      <div style={{ height: 500, width: "100%" }} key={index}>
-        <div className="carousel-center">
-          <img style={{ height: 600 }} src={item.backPoster} alt={item.title} />
-        </div>
-        <div className="carousel-center">
-          <i
-            className="far fa-play-circle"
-            style={{ fontSize: 95, color: "#090979" }}
-          ></i>
-        </div>
-        <div
-          className="carousel-caption"
-          style={{ textAlign: "center", fontSize: 40 }}
-        >
-          {item.title}
-        </div>
-      </div>
-    );
-  });
+
 
   const genreList = genres.map((item, index) => {
     return (
@@ -132,21 +109,14 @@ export function Home() {
     );
   });
 
+
+
+
+
+
   return (
     <div className="container">
-      <div className="row mt-2">
-        <div className="col">
-          <RBCarousel
-            autoplay={true}
-            pauseOnVisibility={true}
-            slidesshowSpeed={5000}
-            version={4}
-            indicators={false}
-          >
-            {movies}
-          </RBCarousel>
-        </div>
-      </div>
+      
 
       <div className="row mt-3">
         <div className="col">
@@ -154,32 +124,14 @@ export function Home() {
         </div>
       </div>
 
-      <div className="row mt-3">
-        <div className="col">
-          <div className="float-right">
-            <i className="far fa-arrow-alt-circle-right"></i>
-          </div>
-        </div>
+      <div className="row mt-3">  
       </div>
       <div className="row mt-3">{movieList}</div>
 
-      <div className="row mt-3">
-        <div className="col">
-          <p className="font-weight-bold" style={{ color: "#5a606b" }}>
-          PERSONAJES DE TENDENCIA EN ESTA SEMANA
-          </p>
-        </div>
-      </div>
 
-      <div className="row mt-3">
-        <div className="col">
-          <div className="float-right">
-            <i className="far fa-arrow-alt-circle-right"></i>
-          </div>
-        </div>
-      </div>
-      <div className="row mt-3">{trendingPersons}</div>
 
+
+     
       <div className="row mt-3">
         <div className="col">
           <p className="font-weight-bold" style={{ color: "#5a606b" }}>
@@ -189,11 +141,6 @@ export function Home() {
       </div>
 
       <div className="row mt-3">
-        <div className="col">
-          <div className="float-right">
-            <i className="far fa-arrow-alt-circle-right"></i>
-          </div>
-        </div>
       </div>
       <div className="row mt-3">{topRatedList}</div>
 
@@ -206,11 +153,24 @@ export function Home() {
          
           </ul>
         </div>
-        <div className="col-md-4 col-sm-6" style={{ color: "#5a606b" }}>
-         
-          
+        
+      </div>
+      <div className="row mt-3">
+        <div className="col">
+          <p className="font-weight-bold" style={{ color: "#5a606b" }}>
+          PERSONAJES DE TENDENCIA EN ESTA SEMANA
+          </p>
         </div>
       </div>
+
+      <div className="row mt-3">
+      </div>
+      <div className="row mt-3">{trendingPersons}</div>
+
+
+
+
+
     </div>
   );
 }

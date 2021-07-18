@@ -18,14 +18,12 @@ export function MovieDetail({ match }) {
   const [detail, setDetail] = useState([]);
   const [video, setVideo] = useState([]);
   const [casts, setCasts] = useState([]);
-  const [similarMovie, setSimilarMovie] = useState([]);
 
   useEffect(() => {
     const fetchAPI = async () => {
       setDetail(await fetchMovieDetail(params.id));
       setVideo(await fetchMovieVideos(params.id));
       setCasts(await fetchCasts(params.id));
-      setSimilarMovie(await fetchSimilarMovie(params.id));
     };
 
     fetchAPI();
@@ -42,6 +40,7 @@ export function MovieDetail({ match }) {
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
+
         <Modal.Header closeButton>
           <Modal.Title
             id="contained-modal-title-vcenter"
@@ -67,9 +66,9 @@ export function MovieDetail({ match }) {
     genresList = genres.map((g, i) => {
       return (
         <li className="list-inline-item" key={i}>
-          <button type="button" className="btn btn-outline-info">
-            {g.name}
-          </button>
+          <p type="text" className="">
+            {g.name} . 
+            </p>
         </li>
       );
     });
@@ -86,7 +85,7 @@ export function MovieDetail({ match }) {
         <p className="font-weight-bold text-center">{c.name}</p>
         <p
           className="font-weight-light text-center"
-          style={{ color: "#5a606b" }}
+          style={{ color: "#000000" }}
         >
           {c.character}
         </p>
@@ -94,26 +93,10 @@ export function MovieDetail({ match }) {
     );
   });
 
-  const similarMovieList = similarMovie.slice(0, 4).map((item, index) => {
-    return (
-      <div className="col-md-3 col-sm-6" key={index}>
-        <div className="card">
-          <Link to={`/movie/${item.id}`}>
-            <img className="img-fluid" src={item.poster} alt={item.title}></img>
-          </Link>
-        </div>
-        <div className="mt-3">
-          <p style={{ fontWeight: "bolder" }}>{item.title}</p>
-          <p>Calificacion: {item.rating}</p>
-          <ReactStars
-            count={item.rating}
-            size={20}
-            color1={"#f4c10f"}
-          ></ReactStars>
-        </div>
-      </div>
-    );
-  });
+  
+
+
+
 
   return (
     <div className="container">
@@ -124,7 +107,7 @@ export function MovieDetail({ match }) {
             setIsOpen(false);
           }}
         ></MoviePalyerModal>
-        <div className="col text-center" style={{ width: "100%" }}>
+        <div className="col text-center" style={{ width: "60%" , height: "40%" }}>
           <img
             className="img-fluid"
             src={`http://image.tmdb.org/t/p/original/${detail.backdrop_path}`}
@@ -148,15 +131,12 @@ export function MovieDetail({ match }) {
 
       <div className="row mt-3">
         <div className="col">
-          <p style={{ color: "#5a606b", fontWeight: "bolder" }}>GENERO</p>
+          <p style={{ color: "#000000", fontWeight: "bolder" }}>GENERO</p>
+          <ul className="list-inline-1">{genresList}</ul>
         </div>
       </div>
 
-      <div className="row mt-3">
-        <div className="col">
-          <ul className="list-inline">{genresList}</ul>
-        </div>
-      </div>
+      
 
       <div className="row mt-3">
         <div className="col">
@@ -168,7 +148,7 @@ export function MovieDetail({ match }) {
             ></ReactStars>
           </div>
           <div className="mt-3">
-            <p style={{ color: "#5a606b", fontWeight: "bolder" }}>SINOPSIS</p>
+            <p style={{ color: "#000000", fontWeight: "bolder" }}>SINOPSIS</p>
             {detail.overview}
           </div>
         </div>
@@ -176,21 +156,18 @@ export function MovieDetail({ match }) {
 
       <div className="row mt-3">
         <div className="col-md-3">
-          <p style={{ color: "#5a606b", fontWeight: "bolder" }}>FECHA DE SALIDA</p>
+          <p style={{ color: "#000000", fontWeight: "bolder" }}>FECHA DE SALIDA</p>
           <p style={{ color: "#f4c10f" }}>{detail.release_date}</p>
         </div>
         <div className="col-md-3">
-          <p style={{ color: "#5a606b", fontWeight: "bolder" }}>DURACION</p>
-          <p style={{ color: "#f4c10f" }}>{detail.runtime}</p>
+          <p style={{ color: "#000000", fontWeight: "bolder" }}>DURACION</p>
+          <p style={{ color: "#f4c10f" }}>{detail.runtime} minutes</p>
         </div>
         <div className="col-md-3">
-          <p style={{ color: "#5a606b", fontWeight: "bolder" }}>PRESUPUESTO</p>
-          <p style={{ color: "#f4c10f" }}>{detail.budget}</p>
+          <p style={{ color: "#000000", fontWeight: "bolder" }}>PRESUPUESTO</p>
+          <p style={{ color: "#f4c10f" }}>$ {detail.budget}</p>
         </div>
-        <div className="col-md-3">
-          <p style={{ color: "#5a606b", fontWeight: "bolder" }}>HOMEPAGE</p>
-          <p style={{ color: "#f4c10f" }}>{detail.homepage}</p>
-        </div>
+       
       </div>
 
       <div className="row mt-3">
@@ -200,15 +177,6 @@ export function MovieDetail({ match }) {
       </div>
       <div className="row mt-3">{castList}</div>
 
-      <div className="row mt-3">
-        <div className="col">
-          <p style={{ color: "#5a606b", fontWeight: "bolder" }}>
-            PELICULAS SIMILARES
-          </p>
-        </div>
-      </div>
-
-      <div className="row mt-3">{similarMovieList}</div>
 
       <hr className="mt-5" style={{ borderTop: "1px solid #5a606b" }}></hr>
 

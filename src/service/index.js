@@ -14,7 +14,7 @@ export const fetchMovies = async () => {
         const { data } = await axios.get(nowPlayingUrl, {
             params: {
                 api_key: apiKey,
-                language: 'en_US',
+                language: 'es-MX',
                 page: 1
             }
         })
@@ -39,7 +39,7 @@ export const fetchGenre = async () => {
         const { data } = await axios.get(genreUrl, {
             params: {
                 api_key: apiKey,
-                language: 'en_US',
+                language: 'es-MX',
                 page: 1
             }
         })
@@ -56,7 +56,7 @@ export const fetchMovieByGenre = async (genre_id) => {
         const { data } = await axios.get(moviesUrl, {
             params: {
                 api_key: apiKey,
-                language: 'en_US',
+                language: 'es-MX',
                 page: 1,
                 with_genres: genre_id
             }
@@ -99,7 +99,7 @@ export const fetchTopratedMovie = async () => {
         const { data } = await axios.get(topratedUrl, {
             params: {
                 api_key: apiKey,
-                language: 'en_US',
+                language: 'es-MX',
                 page: 1
             }
         })
@@ -125,7 +125,7 @@ export const fetchMovieDetail = async (id) => {
         const { data } = await axios.get(`${movieUrl}/${id}`, {
             params: {
                 api_key: apiKey,
-                language: 'en_US'
+                language: 'es-MX'
             }
         });
         return data;
@@ -166,7 +166,7 @@ export const fetchSimilarMovie = async (id) => {
         const { data } = await axios.get(`${movieUrl}/${id}/similar`, {
             params: {
                 api_key: apiKey,
-                language: 'en_US'
+                language: 'es-MX'
             }
         });
         const posterUrl = 'https://image.tmdb.org/t/p/original/';

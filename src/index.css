@@ -14,20 +14,36 @@ code {
     monospace;
 }
 
+.list-inline-item{
+  text-align: center;
+  align-items: center;
+}
 .list-inline-item .btn-outline-info {
-  color: #d6d4d6;
+  color: #141414;
+  font-weight: bold;
+  background: cornsilk;
   border: 5px solid #1386a3;
   margin-bottom: 40px;
   border-radius: 45px;
   font-weight: 100%;
 }
 .list-inline-item .btn-outline-info:hover {
-  color: #cc1919;
-  border-color: #181bad;
-  background-color: transparent;
+  background-color: #1386a3;
+  font-weight: bold;
+  color: white;
+  border-color: #1386a3;
   transition: all 0.3s ease-in-out;
 }
 
+.list-inline-item-1 .btn-outline-info {
+  color: #141414;
+  font-weight: bold;
+  background: cornsilk;
+  border: 5px solid #1386a3;
+  margin-bottom: 40px;
+  border-radius: 45px;
+  font-weight: 100%;
+}
 .fa-arrow-alt-circle-right {
   color: #1925d3;
   font-size: 50px;
