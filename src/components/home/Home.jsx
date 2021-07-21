@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import {
   fetchGenre,
   fetchMovieByGenre,
-  fetchPersons,
   fetchTopratedMovie,
 } from "../../service";
 
@@ -13,15 +12,14 @@ import ReactStars from "react-rating-stars-component";
 export function Home() {
   const [genres, setGenres] = useState([]);
   const [movieByGenre, setMovieByGenre] = useState([]);
-  const [persons, setPersons] = useState([]);
   const [topRated, setTopRated] = useState([]);
 
   useEffect(() => {
     const fetchAPI = async () => {
       setGenres(await fetchGenre());
       setMovieByGenre(await fetchMovieByGenre(28));
-      setPersons(await fetchPersons());
       setTopRated(await fetchTopratedMovie());
+      
     };
 
     fetchAPI();
@@ -48,18 +46,20 @@ export function Home() {
     );
   });
 
+
   const movieList = movieByGenre.slice(0, 4).map((item, index) => {
     return (
-      <div className="col-md-3 col-sm-6" key={index}>
+      <div className="col-md-3 col-sm-6 card-content" key={index}>
         <div className="card">
           <Link to={`/movie/${item.id}`}>
             <img className="img-fluid" src={item.poster} alt={item.title}></img>
           </Link>
         </div>
-        <div className="mt-3">
-          <p style={{ fontWeight: "bolder" }}>{item.title}</p>
-          <p>Rated: {item.rating}</p>
-          <ReactStars
+        
+        <div className="puntuacion">
+          <p >{item.title}</p>
+          <p>Calificación: {item.rating}</p>
+          <ReactStars 
             count={item.rating}
             size={20}
             color1={"#f4c10f"}
@@ -69,34 +69,17 @@ export function Home() {
     );
   });
 
-  const trendingPersons = persons.slice(0, 4).map((p, i) => {
-    return (
-      <div className="col-md-3 text-center" key={i}>
-        <img
-          className="img-fluid rounded-circle mx-auto d-block"
-          src={p.profileImg}
-          alt={p.name}
-        ></img>
-        <p className="font-weight-bold text-center">{p.name}</p>
-        <p
-          className="font-weight-light text-center"
-          style={{ color: "#5a606b" }}
-        >
-          Tendencias de {p.known}
-        </p>
-      </div>
-    );
-  });
+
 
   const topRatedList = topRated.slice(0, 4).map((item, index) => {
     return (
-      <div className="col-md-3" key={index}>
+      <div className="col-md-3 col-sm-6 card-content" key={index}>
         <div className="card">
           <Link to={`/movie/${item.id}`}>
             <img className="img-fluid" src={item.poster} alt={item.title}></img>
           </Link>
         </div>
-        <div className="mt-3">
+        <div className="puntuacion">
           <p style={{ fontWeight: "bolder" }}>{item.title}</p>
           <p>Calificacion: {item.rating}</p>
           <ReactStars
@@ -111,63 +94,38 @@ export function Home() {
 
 
 
-
-
-
   return (
     <div className="container">
       
 
-      <div className="row mt-3">
+      <div className="genreList">
         <div className="col">
-          <ul className="list-inline">{genreList}</ul>
+          <ul>{genreList}</ul>
         </div>
       </div>
 
-      <div className="row mt-3">  
+      <div className="title">
+        <div>
+          <p>
+          LISTA DE PELÍCULAS
+          </p>
+        </div>
       </div>
+
       <div className="row mt-3">{movieList}</div>
 
 
-
-
-     
-      <div className="row mt-3">
-        <div className="col">
-          <p className="font-weight-bold" style={{ color: "#5a606b" }}>
+      <div className="title">
+        <div>
+          <p>
           PELÍCULAS MEJOR CLASIFICADAS
           </p>
         </div>
       </div>
 
-      <div className="row mt-3">
-      </div>
       <div className="row mt-3">{topRatedList}</div>
 
-      <hr className="mt-5" style={{ borderTop: "1px solid #5a606b" }}></hr>
-
-      <div className="row mt-3 mb-5">
-        <div className="col-md-8 col-sm-6" style={{ color: "#5a606b" }}>
-         
-          <ul className="list-inline">
-         
-          </ul>
-        </div>
-        
-      </div>
-      <div className="row mt-3">
-        <div className="col">
-          <p className="font-weight-bold" style={{ color: "#5a606b" }}>
-          PERSONAJES DE TENDENCIA EN ESTA SEMANA
-          </p>
-        </div>
-      </div>
-
-      <div className="row mt-3">
-      </div>
-      <div className="row mt-3">{trendingPersons}</div>
-
-
+      <hr />
 
 
 

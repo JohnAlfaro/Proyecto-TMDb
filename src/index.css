@@ -9,15 +9,56 @@ background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100
   -moz-osx-font-smoothing: grayscale;
 }
 
+body::-webkit-scrollbar {
+  width: 15px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: rgb(56, 56, 78);
+  border-radius: 6px;
+  border-right: 1px solid #f1f1f1;
+  border-left: 1px solid #f1f1f1;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
+.title{
+  color: black;
+  font-weight: bold;
+  text-align: center;
+}
+
+.title p{
+  color: black;
+  font-weight: bold;
+
+}
+
+.puntuacion{
+  text-align: center;
+align-items: center;
+font-weight: bold;
+place-items: center;
+}
+
+.puntuacion p{
+  color: #141414;
+}
+.genreList{
+  margin-top: 5%;
+}
+
 .list-inline-item{
   text-align: center;
   align-items: center;
+  display: inline-block;
+  margin-right: 2%;
 }
+
+
 .list-inline-item .btn-outline-info {
   color: #141414;
   font-weight: bold;
@@ -35,6 +76,21 @@ code {
   transition: all 0.3s ease-in-out;
 }
 
+.card-content{
+  padding-bottom: 10%;
+}
+
+.padding{  
+  padding-bottom: 20%;
+}
+
+.card{
+  width: 80%;
+  align-items: center;
+  margin-left: 10%;
+  color: transparent;
+  border-radius: 5px;
+}
 .list-inline-item-1 .btn-outline-info {
   color: #141414;
   font-weight: bold;
