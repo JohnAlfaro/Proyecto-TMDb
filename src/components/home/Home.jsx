@@ -1,25 +1,29 @@
 import React, { useState, useEffect } from "react";
 import {
+  fetchMovies,
   fetchGenre,
   fetchMovieByGenre,
+  fetchPersons,
   fetchTopratedMovie,
 } from "../../service";
-
+import RBCarousel from "react-bootstrap-carousel";
 import "react-bootstrap-carousel/dist/react-bootstrap-carousel.css";
 import { Link } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 
 export function Home() {
+  const [nowPlaying, setNowPlaying] = useState([]);
   const [genres, setGenres] = useState([]);
   const [movieByGenre, setMovieByGenre] = useState([]);
   const [topRated, setTopRated] = useState([]);
 
+
   useEffect(() => {
     const fetchAPI = async () => {
+      setNowPlaying(await fetchMovies());
       setGenres(await fetchGenre());
       setMovieByGenre(await fetchMovieByGenre(28));
       setTopRated(await fetchTopratedMovie());
-      
     };
 
     fetchAPI();
@@ -28,6 +32,26 @@ export function Home() {
   const handleGenreClick = async (genre_id) => {
     setMovieByGenre(await fetchMovieByGenre(genre_id));
   };
+
+  const movies = nowPlaying.slice(0, 5).map((item, index) => {
+    return (
+      <div style={{ height: 400, width: "100%" }} key={index}>
+        <Link to={`/movie/${item.id}`}>
+        <div className="carousel-center">
+          <img style={{ height: 500 }} src={item.backPoster} alt={item.title} />
+        </div>
+          </Link>
+        <div
+          className="carousel-caption"
+          style={{ textAlign: "center", fontSize: 35 }}
+        >
+          {item.title}
+        </div>
+      </div>
+    );
+  });
+
+
 
 
   const genreList = genres.map((item, index) => {
@@ -97,6 +121,20 @@ export function Home() {
   return (
     <div className="container">
       
+      <div className="row mt-2">
+        <div className="col">
+          <RBCarousel
+            autoplay={true}
+            pauseOnVisibility={true}
+            slidesshowSpeed={5000}
+            version={4}
+            indicators={false}
+          >
+            {movies}
+          </RBCarousel>
+        </div>
+      </div>
+
 
       <div className="genreList">
         <div className="col">

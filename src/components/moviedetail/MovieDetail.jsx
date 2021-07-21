@@ -3,7 +3,6 @@ import {
   fetchMovieDetail,
   fetchMovieVideos,
   fetchCasts,
-  fetchSimilarMovie,
 } from "../../service";
 import "react-bootstrap-carousel/dist/react-bootstrap-carousel.css";
 import { Modal } from "react-bootstrap";
