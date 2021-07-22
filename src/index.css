@@ -58,6 +58,21 @@ place-items: center;
   margin-right: 2%;
 }
 
+.nameMovie{
+color: white;
+font-size: 2.25em;
+font-weight: 500;
+margin-bottom: 0%;
+}
+
+.imagen{
+  width: 10rem;
+  margin: 0.6rem;
+}
+.justify{
+  justify-content: space-between;
+}
+
 
 .list-inline-item .btn-outline-info {
   color: #141414;
