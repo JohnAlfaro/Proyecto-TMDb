@@ -126,3 +126,11 @@ margin-bottom: 0%;
   color: #064b03;
   transition: all 0.3s ease-in-out;
 }
+
+.centrar{
+  text-align: center;
+align-items: center;}
+
+.color-titulo{
+  color: #160094
+}
