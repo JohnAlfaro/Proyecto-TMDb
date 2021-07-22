@@ -131,6 +131,8 @@ export function Home() {
       </div>
       </div>
 
+      <br />
+      
       <div className="row mt-2">
         <div className="col">
           <RBCarousel
