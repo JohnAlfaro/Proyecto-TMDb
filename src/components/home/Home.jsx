@@ -33,7 +33,7 @@ export function Home() {
     setMovieByGenre(await fetchMovieByGenre(genre_id));
   };
 
-  const movies = nowPlaying.slice(0, 5).map((item, index) => {
+  const movies = nowPlaying.slice(0, 6).map((item, index) => {
     return (
       <div style={{ height: 400, width: "100%" }} key={index}>
         <Link to={`/movie/${item.id}`}>
