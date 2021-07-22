@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {
   fetchMovies,
-  fetchGenre,
   fetchMovieByGenre,
-  fetchPersons,
   fetchTopratedMovie,
 } from "../../service";
 import RBCarousel from "react-bootstrap-carousel";
@@ -13,7 +11,6 @@ import ReactStars from "react-rating-stars-component";
 
 export function Home() {
   const [nowPlaying, setNowPlaying] = useState([]);
-  const [genres, setGenres] = useState([]);
   const [movieByGenre, setMovieByGenre] = useState([]);
   const [topRated, setTopRated] = useState([]);
 
@@ -21,7 +18,6 @@ export function Home() {
   useEffect(() => {
     const fetchAPI = async () => {
       setNowPlaying(await fetchMovies());
-      setGenres(await fetchGenre());
       setMovieByGenre(await fetchMovieByGenre(28));
       setTopRated(await fetchTopratedMovie());
     };
@@ -29,9 +25,7 @@ export function Home() {
     fetchAPI();
   }, []);
 
-  const handleGenreClick = async (genre_id) => {
-    setMovieByGenre(await fetchMovieByGenre(genre_id));
-  };
+  
 
   const movies = nowPlaying.slice(0, 6).map((item, index) => {
     return (
@@ -54,22 +48,7 @@ export function Home() {
 
 
 
-  const genreList = genres.map((item, index) => {
-    return (
-      <li className="list-inline-item" key={index}>
-        <button
-          type="button"
-          className="btn btn-outline-info"
-          onClick={() => {
-            handleGenreClick(item.id);
-          }}
-        >
-          {item.name}
-        </button>
-      </li>
-    );
-  });
-
+  
 
   const movieList = movieByGenre.slice(0, 4).map((item, index) => {
     return (
@@ -79,6 +58,8 @@ export function Home() {
             <img className="img-fluid" src={item.poster} alt={item.title}></img>
           </Link>
         </div>
+
+       
         
         <div className="puntuacion">
           <p >{item.title}</p>
@@ -120,7 +101,22 @@ export function Home() {
 
   return (
     <div className="container">
-      
+       <div>
+      <Link to={`/`}>
+          <button>Ir a Home</button>
+          </Link>
+      </div>
+      <div>
+      <Link to={`/tendencia`}>
+          <button>Ir a Tendencia</button>
+          </Link>
+      </div>
+      <div>
+      <Link to={`/generos`}>
+          <button>Ir a Generos</button>
+          </Link>
+      </div>
+
       <div className="row mt-2">
         <div className="col">
           <RBCarousel
@@ -135,12 +131,7 @@ export function Home() {
         </div>
       </div>
 
-
-      <div className="genreList">
-        <div className="col">
-          <ul>{genreList}</ul>
-        </div>
-      </div>
+<br />
 
       <div className="title">
         <div>

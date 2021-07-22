@@ -99,6 +99,22 @@ export function MovieDetail({ match }) {
 
   return (
     <div className="container">
+      <div>
+      <Link to={`/`}>
+          <button>Ir a Home</button>
+          </Link>
+      </div>
+      <div>
+      <Link to={`/tendencia`}>
+          <button>Ir a Tendencia</button>
+          </Link>
+      </div>
+      <div>
+      <Link to={`/generos`}>
+          <button>Ir a Generos</button>
+          </Link>
+      </div>
+      <br />
       <div className="row mt-2">
         <MoviePalyerModal
           show={isOpen}
