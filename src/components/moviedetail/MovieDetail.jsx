@@ -75,7 +75,7 @@ export function MovieDetail({ match }) {
 
   const castList = casts.slice(0, 4).map((c, i) => {
     return (
-      <div className="col-md-3 text-center" key={i}>
+      <div className=".col-6 imagen text-center" key={i}>
         <img
           className="img-fluid rounded-circle mx-auto d-block"
           src={c.img}
@@ -106,7 +106,7 @@ export function MovieDetail({ match }) {
             setIsOpen(false);
           }}
         ></MoviePalyerModal>
-        <div className="col text-center" style={{ width: "60%" , height: "40%" }}>
+        <div className="col text-center " style={{ width: "60%" , height: "40%" }}>
           <img
             className="img-fluid"
             src={`http://image.tmdb.org/t/p/original/${detail.backdrop_path}`}
@@ -123,15 +123,18 @@ export function MovieDetail({ match }) {
             className="carousel-caption"
             style={{ textAlign: "center", fontSize: 35 }}
           >
-            {detail.title}
+            
           </div>
         </div>
       </div>
 
       <div className="row mt-3">
         <div className="col">
+        <p className="nameMovie">{detail.title}</p>
           <p style={{ color: "#000000", fontWeight: "bolder" }}>GENERO</p>
+          <div className="justify">
           <ul className="list-inline-1">{genresList}</ul>
+          </div>
         </div>
       </div>
 
@@ -153,7 +156,10 @@ export function MovieDetail({ match }) {
         </div>
       </div>
 
-      <div className="row mt-3">
+
+
+
+      <div className="row mt-3 justify">
         <div className="col-md-3">
           <p style={{ color: "#000000", fontWeight: "bolder" }}>FECHA DE SALIDA</p>
           <p style={{ color: "#f4c10f" }}>{detail.release_date}</p>
@@ -171,10 +177,10 @@ export function MovieDetail({ match }) {
 
       <div className="row mt-3">
         <div className="col">
-          <p style={{ color: "#5a606b", fontWeight: "bolder" }}>CASTS</p>
+          <p style={{ color: "#141414", fontWeight: "bolder" }}>CASTS</p>
         </div>
       </div>
-      <div className="row mt-3">{castList}</div>
+      <div className="row mt-3 justify">{castList}</div>
 
 
       <hr className="mt-5" style={{ borderTop: "1px solid #5a606b" }}></hr>
